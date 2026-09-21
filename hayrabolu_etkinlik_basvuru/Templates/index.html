@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Etkinlik Online Başvuru Sistemi</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="form-kutusu">
+
+        <img src="{{ url_for('static', filename='images/belediye-logo.png') }}"
+             alt="Hayrabolu Belediyesi Logo"
+             class="belediye-logo">
+
+        <h1>Hayrabolu Belediyesi</h1>
+        <h2>Kültür Sanat ve Sosyal İşler Müdürlüğü</h2>
+
+        <p>Etkinlik Online Başvuru Sistemi</p>
+
+        <br>
+
+        <form method="POST">
+
+            <label>Ad Soyad:</label><br>
+            <input type="text"
+                   name="ad_soyad"
+                   required>
+
+            <br><br>
+
+            <label>T.C. Kimlik No:</label><br>
+            <input type="text"
+                   name="tc"
+                   inputmode="numeric"
+                   pattern="[0-9]{11}"
+                   minlength="11"
+                   maxlength="11"
+                   required
+                   title="T.C. Kimlik numarası 11 rakamdan oluşmalıdır.">
+
+            <br><br>
+
+            <label>Telefon:</label><br>
+            <input type="tel"
+                   name="telefon"
+                   inputmode="numeric"
+                   pattern="[0-9]{10}"
+                   minlength="10"
+                   maxlength="10"
+                   required
+                   placeholder="5XXXXXXXXX"
+                   title="Telefon numarası 10 rakam olmalıdır. Örnek: 5551234567">
+
+            <br><br>
+
+            <label>Doğum Tarihi:</label><br>
+            <input type="date"
+                   name="dogum_tarihi"
+                   required>
+
+            <br><br>
+
+            <label>Kurs Seçiniz:</label><br>
+
+            <select name="kurs" required>
+
+                <option value="" selected disabled>
+                    Seçiniz
+                </option>
+
+                <option value="Robotik Kodlama">
+                    Robotik Kodlama — Başvuru: 01.10.2026 - 15.10.2026
+                </option>
+
+                <option value="El Sanatları">
+                    El Sanatları — Başvuru: 05.10.2026 - 20.10.2026
+                </option>
+
+                <option value="Bilgisayar">
+                    Bilgisayar — Başvuru: 01.10.2026 - 20.10.2026
+                </option>
+
+                <option value="Tiyatro">
+                    Tiyatro — Başvuru: 10.10.2026 - 25.10.2026
+                </option>
+
+                <option value="Müzik">
+                    Müzik — Başvuru: 15.10.2026 - 30.10.2026
+                </option>
+
+            </select>
+
+            <br><br>
+
+            <label>Açıklama:</label><br>
+
+            <textarea name="aciklama"
+                      rows="5"
+                      cols="40"></textarea>
+
+            <br><br>
+
+            <button type="submit">
+                BAŞVURUYU GÖNDER
+            </button>
+
+        </form>
+
+    </div>
+
+    <footer>
+
+        <div class="footer-bilgi">
+            <span>Başvuru sırasında verilen bilgilerin doğruluğundan başvuru sahibi sorumludur.</span>
+            <span>Kişisel verileriniz ilgili mevzuat çerçevesinde işlenmektedir.</span>
+        </div>
+
+        <div class="footer-alt">
+            © 2026 Hayrabolu Belediyesi
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
