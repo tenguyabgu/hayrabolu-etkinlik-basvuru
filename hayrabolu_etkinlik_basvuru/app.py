@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="Templates")
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -34,8 +34,4 @@ def ana_sayfa():
 
 
 if __name__ == "__main__":
-
-    print("ÇALIŞAN KLASÖR:", os.getcwd())
-    print("LOGO VAR MI:", os.path.exists("static/images/belediye-logo.png"))
-
     app.run(debug=True)
