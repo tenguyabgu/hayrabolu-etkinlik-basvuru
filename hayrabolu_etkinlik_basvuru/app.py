@@ -1,7 +1,15 @@
 from flask import Flask, render_template, request
+from supabase import create_client
 import os
 
 app = Flask(__name__, template_folder="Templates")
+
+
+# Supabase bağlantısı
+supabase_url = os.environ.get("SUPABASE_URL")
+supabase_key = os.environ.get("SUPABASE_KEY")
+
+supabase = create_client(supabase_url, supabase_key)
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -16,17 +24,15 @@ def ana_sayfa():
         kurs = request.form["kurs"]
         aciklama = request.form["aciklama"]
 
-        with open("basvurular.txt", "a", encoding="utf-8") as dosya:
-
-            dosya.write("YENİ BAŞVURU\n")
-            dosya.write("------------------------------\n")
-            dosya.write(f"Ad Soyad: {ad_soyad}\n")
-            dosya.write(f"T.C. Kimlik No: {tc}\n")
-            dosya.write(f"Telefon: {telefon}\n")
-            dosya.write(f"Doğum Tarihi: {dogum_tarihi}\n")
-            dosya.write(f"Kurs: {kurs}\n")
-            dosya.write(f"Açıklama: {aciklama}\n")
-            dosya.write("------------------------------\n\n")
+        # Supabase veritabanına kayıt
+        supabase.table("basvurular").insert({
+            "ad_soyad": ad_soyad,
+            "tc": tc,
+            "telefon": telefon,
+            "dogum_tarihi": dogum_tarihi,
+            "kurs": kurs,
+            "aciklama": aciklama
+        }).execute()
 
         return render_template("basarili.html")
 
